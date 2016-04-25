@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>apply for candidate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <style>
+  
+  body {
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777;
+       }
+	 
+  h2 {
+    text-align: center;
+}
+  .container {
+      padding: 80px 120px;
+  }
+   .nav-tabs li a {
+      color: #777;
+  }
+  
+ 
+    
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+      color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #fff !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  
+  .form-control {
+      border-radius: 10px;
+  }
+  textarea {
+      resize: none;
+	  }
+	  
+	
+  
+  #col {background-color:#CFCBEF;
+			border-radius: 7px;}
+			
+		
+	
+	footer {
+      background-color: black;
+      color: #f5f5f5;
+      padding: 10px;
+  }
+  footer a {
+      color: red;
+  }
+  footer a:hover {
+      color: red;
+      text-decoration: none;
+  }  
+  
+  a:link, a:visited {
+    background-color:grey;
+    color: black;
+    border: 2px solid white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: white;
+    color: white; }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     
+     <a class="navbar-brand" ><span class="glyphicon glyphicon-king"> INDIAN INSTITUTE OF TECHNOLOGY , PATNA</span></a>
+	 
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="navbar-brand"> <span class="glyphicon glyphicon-pencil">Application</span></a></li>
+       </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+   
+  <h2 id="col">APPLICATION FOR CANDIDATURE</h2>
+  
+  
+  <form class="form-horizontal" role="form" action="/accounts/candidateresult/" method="post">{% csrf_token %}	
+
+{% if request.user.is_authenticated %}
+Name - {{student.firstname}} {{student.lastname}}<br/>
+Username - {{student.username}}<br/>
+Roll No - {{student.rollno}}<br/>
+{% endif %}
+
+<div class="form-group">
+      <label class="control-label col-sm-2" for="momento">Momento:</label>
+	   <div class="col-sm-10">
+      <textarea class="form-control" name="momneto" rows="5" id="comment" placeholder="What are your objectives...?"></textarea>
+	  {% if error_momento %}
+			{{ error_momento }}
+			{% endif %}
+    </div>
+	</div>
+
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="department">Post:</label>
+      <div class="col-sm-10">
+      <select class="form-control" id="post" name="post">
+	    <option value=""></option>		
+			<option value="general">General Secretary</option>
+			<option value="cultural">Cultural Secretary</option>
+			<option value="technical">Technical Secretary</option>	
+			<option value="sports">Sports Secretary</option>	
+			<option value="environmental">Environmental Secretary</option>
+			<option value="literary">Literary Secretary</option>		
+			<option value="mess">Mess Secretary</option>		
+			<option value="maintenance">Maintenance Secretary</option>
+      </select>
+		{% if error_post %}
+			{{ error_post }}
+			{% endif %}
+      </div>
+    </div>
+
+	<div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-danger btn-lg" value="submit">Submit</button>
+      </div>
+    </div>
+	
+  </form>
+</div>
+
+<footer class="text-center">
+	&emsp;
+  <a href="demo.html" target="blank">Home page</a> 
+  <a href="commonblog.html" target="blank" >Common Blog</a> 
+  <a href="blog_candidate.html" target="blank" >Candidate's Blog</a> 
+  </footer> 
+
+  </body>
+  </html>
+  

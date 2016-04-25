@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Voting Casted</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <style>
+  
+  body { 
+         background-repeat:no-repeat;
+		 background-position:50% 220%;
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777
+       }
+	   
+	    h2, h3,h4{
+    text-align: center;
+}
+
+	  .container {  
+      padding: 80px 120px;
+  }
+   .nav-tabs li a {
+      color: #777;
+  }
+  
+ 
+    
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 2px;
+      opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+      color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #fff !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  
+  .form-control {
+      border-radius: 0;
+  }
+  textarea {
+      resize: none;
+	  }
+	  
+	  #nav1 {color:#FFFFFF;
+			background-color:#000000;
+			border-top: 1px solid black;
+		    font-size:15px;
+			width:100%; 	
+		
+            position:relative;			
+			padding-top:10px;	 
+			padding-bottom:21px;
+		    top:200px;
+			left:0px;}
+		#nav1 > a {color:#FFFFFF;}
+  
+  #col {background-color:#CFCBEF;
+			border-radius: 7px;}
+			
+			a:link, a:visited {
+    background-color:black;
+    color: black;
+    border: 2px solid white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: #999966;
+    color: white; }
+	
+	
+
+  </style>
+</head>
+
+ <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     
+     <a class="navbar-brand" ><span class="glyphicon glyphicon-king"> INDIAN INSTITUTE OF TECHNOLOGY , PATNA</span></a>
+	 
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+	     {% if request.user.is_authenticated %} <br>
+        <li><a class="navbar-brand" href="/accounts/logout/"> <span class="glyphicon glyphicon-log-out">Logout</span></a></li>
+		{% else %}
+        <li><a class="navbar-brand" href="/accounts/login/"> <span class="glyphicon glyphicon-log-in">Login</span></a></li><br>
+		{% endif %}<br>
+       </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<h3>Your Vote has Been Casted.</h3><br>
+<br>
+<h3>You unique key is {{key}}</h3><br>
+<h4>You can use this key to later verify you vote later.</h4>
+</div>
+
+
+<div id="nav1" class="text-center">
+&emsp;
+  <a href="/" >Home</a> 
+  <a href="/candidatesbulletin/"  >Candidates Bulleting</a> 
+  <a href="/commonblog/"  >Commom Blog</a> 
+  <a href="/voting/"  >Caste your Vote</a>
+  <a href="/voting/results/"  >Voting results</a> 
+  <a href="/candidatelist/"  >Candidate list</a> 
+ </div>
+
+</body>
+</html>

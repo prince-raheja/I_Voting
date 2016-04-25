@@ -1,0 +1,175 @@
+{% load get_comments %}
+<!doctype html>
+<html>
+<head>
+	<title>Candidate Blog</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+		body {background-image: linear-gradient(to bottom, #FF3C3C, #FF9B3C);}
+		nav{background-color:#000000;
+			color: #FFFFFF;}
+		#message{align-content:center; 	
+						position:fixed;
+						top:475px;
+						left:350px;}  
+		.page input{align-content:center;}
+		.profile{background-color:#A2F891;
+						border:1px solid black;
+						border-radius:10px;
+						padding:2px;}
+		.post {background-color:#C3E1FF;
+					border:1px solid black;
+					border-radius:10px;
+					padding:2px;}
+		.links{background-color: #FFB570;
+				border:1px solid black;
+				border-radius:10px;
+				padding:2px;}
+		.comment{background-color:#FFE0DE;
+						border:1px solid black;
+						border-radius:10px;
+						padding:2px 2px;}
+		.commentclosebutton{display: block;}
+		.buttonposition1{background-repeat: no-repeat;
+ 					   	background-size: auto;
+    					background-position: -13px -690px;}
+		#rightalign{align-content:right;}
+		#name{color:#5129FF}
+		#time{color:#888888}
+	</style>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+	<header>
+		<nav class="navbar navbar-dafault" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<h2>Indian Institute of Technology - Patna</h2>
+				</div><!-- navbar-header -->
+			<ul class="nav navbar-nav navbar-right">
+				<li>{% if request.user.is_authenticated %}
+				<a href="/accounts/logout/"><strong>Logout</strong></a>
+				{% else %}
+				<a href = "/accounts/login/"><strong>Login</strong></a></li>
+				{% endif %}
+			</ul>
+			</div><!-- container -->
+		</nav>
+	</header>
+
+<div class="container-fluid">
+<h3><strong><p align="center">Welcome {{ candidate.student.firstname }} {{ candidate.student.lastname }}</p></strong></h3>
+
+	<div class="page" id="newpost">
+		<div class="content container col-sm-9 col-sm-offset-3">
+		{% if candidate %}			
+			<form action = "/candidatesbulletin/addpost/" method="POST"> {% csrf_token %}
+			<textarea type="text" name="content" placeholder ="Share your views..." rows="3" cols="77" style="border-radius: 10px;"></textarea>
+			<input type="hidden" name="path" value="/candidatesbulletin/">
+			<input type = "submit" name = "submit" value = "Post" style="border-radius: 10px;">
+			</form>
+			<br>
+			{% endif %}
+		</div><!-- content container -->
+	</div><!-- newpost -->
+
+	<div class="page" id="left">
+		<div class="content container col-sm-2">
+			<div class="profile">
+			{% if student %}
+			<strong>My Profile</strong><br>
+			{{ student.firstname }} {{ student.lastname }}<br>
+			{{ student.department }} Department<br>
+			Profile Last Updated:<br>
+			{{ student.updated }}
+
+			{% if not student.iscandidate %}
+			<a href="/accounts/applyforcandidate"><strong>Apply for Candidate</strong></a><br>
+			{% endif %}
+			<br>
+			{% endif %}
+			</div><!-- profile -->
+		</div><!-- content container -->
+	</div><!-- left -->
+
+	<div class="page" id="posts">
+		<div class="content container col-sm-6 col-sm-offset-1"  style="height:420px; width:650px; overflow:auto;">
+		{% for post in posts %}
+			<div class="post">
+			<strong><a href="candidate/{{post.candidate.student.id}}/">{{ post.candidate.student.firstname }} {{ post.candidate.student.lastname }}</a></strong> &nbsp; Year : {{ post.candidate.student.year }} 
+			{% if request.user.username == post.candidate.student.username %}
+			<a class="commentclosebutton buttonposition" href="/candidatesbulletin/{{ post.id }}/deletepost/" data-tooltip-content="Delete" data-tooltip-alignh="center" data-tooltip="hover" >X</a>
+			{% endif %} <br>
+			
+
+			{{ post.content }}<br>
+			<span id="time">{{ post.timestamp }}</span><br><br>
+
+
+			<!-- Calling get_comments.py to get value of more for a particular post -->
+			<!-- More basically checks if there are more than 3 comments then display recent 3 comments and give a link to all the comments -->
+			{% with morevalue=more|getmorevalue:forloop.counter0 %}
+				{% if morevalue %}
+					<a href="/candidatesbulletin/post/{{post.id}}/">See all comments</a><br><br>
+				{% endif %}
+			{% endwith %}
+			<!-- End calling more -->
+
+			<!-- Calling get_comments.py to get the comments for the current post -->
+			{% with postcomments=comments|getcomments:forloop.counter0 %} 
+			<!-- <strong>Comments<br></strong> -->
+			{% for comment in postcomments %}
+				<div class="comment col-sm-9">
+					<strong>{{ comment.student.firstname }} {{ comment.student.lastname }}</strong>
+					{% if comment.student.username == request.user.username %}
+					<a href="/candidatesbulletin/{{post.id}}/{{comment.id}}/delete/?link=/candidatesbulletin/">Delete</a>
+					{% endif %}
+					<br>
+					{{ comment.comment }}<br>
+					<span id="time">{{ comment.timestamp }}</span>
+				</div><!-- comment -->
+				<br><br><br><br>
+					{% empty %}
+					No comments yet
+				{% endfor %}<!-- <strong>Comments Ends</strong> -->
+				{% endwith %}
+				<!-- Comments fetching Done -->
+
+				<!-- Form for students to add comment -->
+					{% if student %}
+						<form action = "/candidatesbulletin/{{post.id}}/addcomment/?link=/candidatesbulletin/" method="POST"> {% csrf_token %}
+						<p>
+							<textarea type="text" name="comment" placeholder ="Write a comment..." rows="3" cols="50"></textarea>
+							<input type = "submit" name = "submit" value = "Comment" style="border-radius: 10px;">
+						</p>
+						<input type="hidden" name="path" value="/candidatesbulletin/">
+						</form>
+					{% endif %}
+				<!-- Form Ends -->
+			</div><!-- post -->
+			<br>
+			{% empty %}
+				No Posts to show
+			{% endfor %}
+		</div><!-- content container -->
+	</div><!-- posts -->
+
+	<div class="page" id="right">
+		<div class="content container col-sm-2 col-sm-offset-1">
+			<ul class="nav navbar-right links">
+				<li><a href="/">Home</a></li>
+				<li><a href="/commonblog/">Common Blog</a></li>
+				<li><a href="/voting/">Cast Your Vote</a></li>
+				<li><a href="/voting/results/">See Voting Results</a></li>
+				<li><a href="/candidatelist">Candidate List</a></li>
+			</ul>
+		</div><!-- content container -->
+	</div><!-- right -->
+</div><!-- container-fluid -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

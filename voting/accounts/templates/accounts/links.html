@@ -1,0 +1,22 @@
+
+<!-- Links -->
+
+<a href="/">Home</a><br>
+
+{% if request.user.is_authenticated %}
+<a href="/accounts/logout/">Logout</a>
+{% else %}
+<a href="/accounts/login/">Login</a>
+{% endif %}<br>
+
+<a href="/candidatesbulletin/">Candidates Bulletin</a><br>
+
+<a href="/commonblog/">Common Blog</a><br>
+	
+<a href="/voting/">Cast Your Vote</a><br>
+
+<a href="/voting/results/"></a><br>
+
+<a href="/candidatelist">Candidate List</a><br>
+
+<!-- Links End -->

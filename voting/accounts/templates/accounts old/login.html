@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<title> Login Page </title>
+
+<!--	<script type="text/javascript">
+		function validator(){
+			var username = document.getElementById("name").value;
+			var password = document.getElementById("password").value;
+			if(username == "admin" && password == "pswd@123")
+				{
+					alert("Login Successful");	
+					window.location = "home_candidate.html";
+					return false;
+				}
+			else
+				alert("Please check your username and password");
+		}
+	</script> -->
+	<style type = "text/css">
+		body {background-color:#A2F891;}
+		#top_bar {font-family: "Times New Roman", Times, serif;
+			background-color:#1500FF;
+			color:#FFFFFF;
+		    font-size:30px;
+			font-weight:bold;
+		    padding:20px;
+			border-bottom:3px solid black;
+			width:100%;
+			position:fixed;
+			top:0px;
+			left:0px}
+		td {text-align:right}
+		table{top:200px;
+		    background-color:#FFFFFF;
+		    border: 1px solid black;
+		    border-radius: 10px;
+			position:relative;
+			top:75px;}		
+		#col {background-color:#CFCBEF;
+			border-radius: 7px;}		
+		#register{position:relative;
+				top:60px;
+				left:0px;}
+		#common {text-align:center;
+				height:250px;
+				width:600px;
+				border: 3px solid #000000;
+				position:absolute;
+				top:280px;
+				left:50px;
+				background-color:#FCCFEA;}
+		#candidate {text-align:center;
+				height:250px;
+				width:600px;
+				border: 3px solid #000000;
+				position:absolute;
+				top:280px;
+				left:50%;
+				background-color:#FCCFEA;}
+		nav {color:#FFFFFF;
+			background-color:#000000;
+			border-top: 1px solid black;
+		    font-size:20px;
+			width:100%; 		
+			padding-top:10px;	 
+			padding-bottom:21px;	 
+			position:absolute;
+			top:585px;
+			left:0px;}
+		nav > a {color:#FFFFFF;}
+	</style>
+<head> 
+
+
+
+<body>
+<div id="top_bar" align="center">Indian Institute of Technology - Patna 
+{% if error_login %}
+{{ error_login }}
+{% endif %}</div>
+<br/>
+
+
+<!-- New Code -->
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+<!-- New Code Ending -->
+
+
+<form method="POST" action = "/accounts/auth/" >{% csrf_token %}
+<table align="center">	
+	<tr>
+		<th id = "col" colspan="2">I-Voting Login</th>
+	</tr>	
+	<tr>
+		<td>Username :
+		<td><input type="text" name="username" id="name"/></td>
+	</tr>
+	<tr>
+		<td> Password :
+		<td><input type="password" name="password" id="pswd"/></td>
+	</tr>
+	<tr>
+		<th colspan="2"><input type="submit" value="Login" ></th>
+	</tr>	
+</table>
+</form> 
+<br/>
+
+<p id="register" align="center">Click here to <a href="/accounts/register">Sign Up</a> </p>
+
+<!--
+<section id="common">
+		<br/>  
+		<a href="blog_common.html" style= "color:BLUE;font-size:25px" align="center"> Common Blog </a>
+		<br/><br/><br/>
+		Person s &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Person v &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Person k<br/>
+		<textarea rows="5" cols = "20">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</textarea>
+		<textarea rows="5" cols = "20">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</textarea>
+		<textarea rows="5" cols = "20">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</textarea>
+		<!-- <textarea name="common_blog" rows="10" cols = "75">
+		</textarea> -->
+<!--</section>
+
+<section id="candidate">
+		<br/>		
+		<a href="blog_candidate.html"  style= "color:BLUE;font-size:25px" align="center">Candidates' Blog</a>
+		<br/><br/><br/>
+		Candidate c &emsp;&emsp;&emsp;&emsp; Candidate t &emsp;&emsp;&emsp;&emsp;Candidate i<br/>
+		<textarea rows="5" cols = "20">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</textarea>
+		<textarea rows="5" cols = "20">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</textarea>
+		<textarea rows="5" cols = "20">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</textarea>
+		<!-- <textarea name="candidate_blog" rows="10" cols = "75">
+		</textarea> -->
+<!--</section> -->
+
+<nav align="left">
+	&emsp;
+  <a href="/accounts/register">Sign Up</a> |
+  <a href="/commonblog/">Common Blog</a> |
+  <!-- <a href="blog_candidate.html">Candidates' Blog</a>  -->
+  
+</nav>
+
+</body>
+</html>

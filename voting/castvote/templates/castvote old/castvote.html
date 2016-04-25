@@ -1,0 +1,210 @@
+{% load get_value %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Voting Portal</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+
+		</style>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+
+
+<!-- Links -->
+
+<a href="/">Home</a>
+
+{% if request.user.is_authenticated %}
+<a href="/accounts/logout/">Logout</a>
+{% else %}
+<a href="/accounts/login/">Login</a>
+{% endif %}<br>
+
+<a href="/candidatesbulletin/">Candidates Bulleting</a><br>
+
+<a href="/commonblog/">Common Blog</a><br>
+
+<a href="/voting/results/">See Voting Results</a><br>
+
+<a href="/candidatelist">Candidate List</a><br><br>
+
+<!-- Links End -->
+
+
+
+
+<form action="/voting/done/" method="post"> {% csrf_token %}
+{% if general_sec %}
+	<strong>General Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_general %}
+	{{ error_general }}
+	{% endif %} <br>
+	
+	{% for candidate in general_sec %}	
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+
+ 			<input type="radio" name="general" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+		
+		{% endwith %}
+	{% endfor %}
+
+{% endif %}
+<br><br>
+
+
+
+{% if cultural_sec %}
+	<strong>Cultural Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_cultural %}
+	{{ error_cultural }}
+	{% endif %} <br>
+	
+	{% for candidate in cultural_sec %}
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+	 		
+	 		<input type="radio" name="cultural" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+		
+		{% endwith %}
+	{% endfor %}
+
+{% endif %}
+<br><br>
+
+
+
+
+{% if technical_sec %}
+	<strong>Technical Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_technical %}
+	{{ error_technical }}
+	{% endif %} <br>
+	
+	{% for candidate in technical_sec %}
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+ 			
+ 			<input type="radio" name="technical" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+		
+		{% endwith %}
+	{% endfor %}
+
+{% endif %}
+<br><br>
+
+
+
+
+
+
+{% if sports_sec %}
+	<strong>Sports Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_sports %}
+	{{ error_sports }}
+	{% endif %} <br>
+	
+	{% for candidate in sports_sec %}
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+ 			
+ 			<input type="radio" name="sports" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+
+		{% endwith %}
+	{% endfor %}
+
+{% endif %}
+<br><br>
+
+
+
+
+
+{% if environmental_sec %}
+	<strong>Environmental Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_environmental %}
+	{{ error_environmental }}
+	{% endif %}<br>
+	
+	{% for candidate in environmental_sec %}
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+ 			
+ 			<input type="radio" name="environmental" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+		
+		{% endwith %}
+	{% endfor %}
+
+{% endif %}
+<br><br>
+
+
+
+
+
+
+{% if mess_sec %}
+	<strong>Mess Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_mess %}
+	{{ error_mess }}
+	{% endif %} <br>
+	
+	{% for candidate in mess_sec %}
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+ 			
+ 			<input type="radio" name="mess" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+		
+		{% endwith %}
+	{% endfor %}
+
+{% endif %}
+<br><br>
+
+
+
+
+
+
+{% if maintenance_sec %}
+	<strong>Maintenace Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_maintenance %}
+	{{ error_maintenance }}
+	{% endif %} <br>
+	
+	{% for candidate in maintenance_sec %}
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+ 			
+ 			<input type="radio" name="maintenance" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+		
+		{% endwith %}
+	{% endfor %}
+
+{% endif %}
+<br><br>
+
+
+
+
+
+
+{% if literary_sec %}
+	<strong>Literary Secretary Candidates</strong>&emsp;&emsp;
+	{% if error_literary %}
+	{{ error_literary }}
+	{% endif %} <br>
+	
+	{% for candidate in literary_sec %}
+		{% with votevalue=encryptedkey|getvalue:forloop.counter %}
+ 			
+ 			<input type="radio" name="literary" value="{{votevalue}}">{{ candidate.student.firstname }} {{ candidate.student.lastname }}<br>
+
+		{% endwith %}
+	
+	{% endfor %}
+{% endif %}
+<br><br>
+<input id="submit" type="submit" value="Submit"></tr>
+</form>
+
+</body>
+</html>

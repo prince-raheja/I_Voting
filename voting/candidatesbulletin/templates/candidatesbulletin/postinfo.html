@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load get_comments %}
+	<title>{{ candidatepost.candidate.student.firstname }} {{ candidatepost.candidate.student.lastname }}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+		body {background-image: linear-gradient(to bottom, #FF3C3C, #FF9B3C);}
+		nav{background-color:#000000;
+			color: #FFFFFF;}
+		#message{align-content:center; 	
+						position:fixed;
+						top:475px;
+						left:350px;}  
+		.page input{align-content:center;}
+		.profile{background-color:#A2F891;
+						border:1px solid black;
+						border-radius:10px;
+						padding:2px;}
+		.post {background-color:#C3E1FF;
+					border:1px solid black;
+					border-radius:10px;
+					padding:2px;}
+		.links{background-color: #FFB570;
+				border:1px solid black;
+				border-radius:10px;
+				padding:2px;}
+		.comment{background-color:#FFE0DE;
+						border:1px solid black;
+						border-radius:10px;
+						padding:2px 2px;}
+		#rightalign{align-content:right;}
+		#name{color:#5129FF}
+		#time{color:#D0D0D0}
+	</style>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+	<header>
+		<nav class="navbar navbar-dafault" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<h2>Indian Institute of Technology - Patna</h2>
+				</div><!-- navbar-header -->
+			<ul class="nav navbar-nav navbar-right">
+				<li>{% if request.user.is_authenticated %}
+				<a href="/accounts/logout/"><strong>Logout</strong></a>
+				{% else %}
+				<a href = "/accounts/login"><strong>Login</strong></a></li>
+				{% endif %}
+			</ul>
+			</div><!-- container -->
+		</nav>
+	</header>
+<!-- {{ candidatepost.candidate.student.username }}<br>
+{{ request.user.username }}<br> -->
+
+<div class="container-fluid">
+	<div class="page" id="left">
+		<div class="content container col-sm-3">
+			<div class="profile">
+				<p style="font-size: 2em;">{{ candidatepost.candidate.student.firstname }} {{ candidatepost.candidate.student.lastname }}</p>
+					<table>
+						<tr>
+						<td>Username</td>
+						<td>: {{ candidatepost.candidate.student.username }}</td>
+						</tr>
+
+						<tr>
+						<td>Email</td>
+						<td>:  {{ candidatepost.candidate.student.username }}@iitp.ac.in</td>
+						</tr>
+						
+						<tr>
+						<td>Year</td>
+						<td>:  {{ candidatepost.candidate.student.year }}</td>
+						</tr>
+						
+						<tr>
+						<td>Contesting for   </td>
+						<td>:  {{ candidatepost.candidate.postname }}</td>
+						</tr>
+						<tr>
+						<td> Manifesto :</td>
+						</tr>
+						<tr>
+						<td colspan="2">&emsp;{{ candidatepost.candidate.momento }}</td>
+						</tr>
+					</table>			
+			</div><!-- profile -->
+		</div><!-- content container -->
+	</div><!-- left -->
+
+	<div class="content container col-sm-6"  style="height:600px; width:650px; overflow:auto;">
+		<div class="post">
+			<strong>{{ candidatepost.candidate.student.firstname }} {{ candidatepost.candidate.student.lastname }}</strong>&nbsp;Year : {{ candidatepost.candidate.student.year }}&nbsp;
+			{% if request.user.username == candidatepost.candidate.student.username %}
+				<a href="/candidatesbulletin/{{candidatepost.id}}/deletepost/?link=/candidatesbulletin/">Delete</a>
+			{% endif %}
+			<strong>{{ candidatepost.postname }}</strong><br>
+			{{ candidatepost.content }}<br>
+			<span id="time">{{ candidatepost.timestamp }}</span><br><br>
+
+			<!--<strong>Comments</strong><br><br>-->
+			{% for studcomment in comments %}
+				<div class="comment col-sm-8">
+					<strong>{{ studcomment.student.firstname }} {{ studcomments.student.lastname }}</strong> &ensp;
+					{% if studcomment.student.username == request.user.username %}
+						<a href="/candidatesbulletin/{{candidatepost.id}}/{{studcomment.id}}/delete/?link=/candidatesbulletin/{{candidatepost.id}}/">Delete Comment</a>
+					{% endif %}<br>
+					{{ studcomment.comment }}<br>
+					<span id="time">{{ studcomment.timestamp }}</span><br>
+				</div><!-- comment -->
+			<br><br><br><br>
+			{% endfor %}
+			<!-- 			<strong>Comments Ends</strong> -->	
+		</div><!-- post -->
+	</div><!-- content container -->	
+
+	<div class="page" id="right">
+		<div class="content container col-sm-2 col-sm-offset-1">
+			<ul class="nav navbar-right links">
+				<li><a href="/">Home</a></li>
+				<li><a href="/commonblog/">Common Blog</a></li>
+				<li><a href="/candidatesbulletin/">Candidates Bulletin</a></li>
+				<li><a href="/voting/">Cast Your Vote</a></li>
+				<li><a href="/voting/results/">See Voting Results</a></li>
+				<li><a href="/candidatelist">Candidate List</a></li>
+			</ul>
+		</div><!-- content container -->
+	</div><!-- right -->
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<!-- Links -->
+
+<a href="/">Home</a>
+
+{% if request.user.is_authenticated %}
+<a href="/accounts/logout/">Logout</a>
+{% else %}
+<a href="/accounts/login/">Login</a>
+{% endif %}<br>
+
+<a href="/candidatesbulletin/">Candidates Bulleting</a><br>
+
+<a href="/commonblog/">Common Blog</a><br>
+	
+<a href="/voting/">Cast Your Vote</a><br>
+
+<a href="/voting/results/">See Voting Results</a><br>
+
+<a href="/candidatelist">Candidate List</a><br>
+
+<!-- Links End -->
+
+
+
+
+<h3>Your Vote has Been Casted.</h3><br>
+<br>
+<h3>You unique key is {{key}}</h3><br>
+You can use this key to later verify you vote later.
+
+</body>
+</html>

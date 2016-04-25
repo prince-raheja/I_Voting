@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Candidates List</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+		body {background-color: #A2F891;}
+		/*background-image: linear-gradient(to bottom, #FF7575, #E975FF);*/
+		nav{background-color:#000000;
+			color: #FFFFFF;}
+		.page input{align-content:center;}
+		.secretary{background-color:#C3E1FF;
+					border:1px solid black;
+					border-radius:10px;
+					padding:2px;}
+		.year{background-color:#FFE0DE;
+				border:1px solid black;
+				border-radius:10px;
+				padding:2px;}
+		#name{color:#5129FF}
+	</style>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+	<header>
+		<nav class="navbar navbar-dafault" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<h2>Indian Institute of Technology - Patna</h2>
+				</div><!-- navbar-header -->
+			<ul class="nav navbar-nav navbar-right">
+				<li>{% if request.user.is_authenticated %}
+				<a href="/accounts/logout/"><strong>Logout</strong></a>
+				{% else %}
+				<a href = "/accounts/login/"><strong>Login</strong></a></li>
+				{% endif %}
+			</ul>
+			</div><!-- container -->
+		</nav>
+	</header>
+	
+	<div class="page" id="navlinks">
+		<div class="content container">
+				<ul class="nav navbar-nav navbar-right links" >
+					<li><a href="/">Home</a></li>
+					<li><a href="/commonblog/">Common Blog</a></li>
+					<li><a href="/candidatesbulletin/">Candidates Bulletin</a></li>
+					<li><a href="/voting/">Cast Your Vote</a></li>
+					<li><a href="/voting/results/">See Voting Results</a></li>
+				</ul>
+		</div><!-- content container -->
+	</div><!-- navlinks -->
+
+<div class="container-fluid">
+	<div class="page" id="clist">
+		<div class="content container">
+			<h3><strong>Candidate List</strong></h3>
+			<div class="secretary" id="general">
+				<!-- General Secretary -->
+				<strong>General Secretary</strong><br>
+				<div class="year col-sm-2" id="1">
+					<br>
+						{% if general_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in general_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if general_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in general_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if general_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in general_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if general_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in general_sec_IV %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 4 -->
+			<br><br><br><br><br><br>
+			</div><!-- general -->
+			<br>			
+
+			<div class="secretary" id="cultural">		
+				<!-- Cultural Secretary -->
+				<strong>Cultural Secretary</strong><br>
+				<div class="year col-sm-2" id="1">
+					<br>
+						{% if cultural_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in cultural_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if cultural_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in cultural_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if cultural_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in cultural_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if cultural_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in cultural_sec_IV %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 4 -->
+			<br><br><br><br><br><br>
+			</div><!-- cultural -->
+			<br>			
+
+			<div class="secretary" id="technical">
+				<!-- Technical Secretary -->
+				<strong>Technical Secretary</strong><br>
+				<div class="year col-sm-2" id="1">
+					<br>
+						{% if technical_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in technical_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if technical_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in technical_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if technical_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in technical_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if technical_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in technical_sec_IV %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 4 -->
+			<br><br><br><br><br><br>
+			</div><!-- technical -->
+			<br>			
+
+			<div class="secretary" id="sports">
+				<!-- Sports Secretary -->
+				<strong>Sports Secretary</strong><br>
+				<div class="year col-sm-2" id="1">
+					<br>
+						{% if sports_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in sports_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if sports_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in sports_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if sports_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in sports_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if sports_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in sports_sec_IV %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 4 -->
+			<br><br><br><br><br><br>
+			</div><!-- sports -->
+			<br>			
+
+			<div class="secretary" id="mess">
+				<!-- Mess Secretary -->
+				<strong>Mess Secretary</strong><br>
+				<div class="year col-sm-2" id="1">
+					<br>
+						{% if mess_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in mess_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if mess_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in mess_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if mess_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in mess_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if mess_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in mess_sec_IV %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 4 -->
+			<br><br><br><br><br><br>
+			</div><!-- mess -->
+			<br>			
+
+			<div class="secretary" id="environmental">
+				<!-- Environmental Secretary -->
+				<strong>Environmental Secretary</strong><br>
+				<div class="year col-sm-2" id="1">
+					<br>
+						{% if environmental_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in environmental_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if environmental_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in environmental_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if environmental_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in environmental_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if environmental_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in environmental_sec_IV %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 4 -->
+			<br><br><br><br><br><br>
+			</div><!-- environmental -->
+			<br>			
+
+			<div class="secretary" id="maintenance">
+				<!-- Maintenace Secretary -->
+				<strong>Maintenace Secretary</strong><br>
+				<div class="year col-sm-2" id="1">
+					<br>
+						{% if maintenance_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in maintenance_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if maintenance_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in maintenance_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if maintenance_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in maintenance_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if maintenance_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in maintenance_sec_IV %}	
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 4 -->
+			<br><br><br><br><br><br>
+			</div><!-- maintenance -->
+			<br>			
+
+			<div class="secretary" id="literary	">
+				<!-- Literary Secretary -->
+				<strong>Literary Secretary</strong><br>
+				<br>
+				<div class="year col-sm-2" id="1">
+						{% if literary_sec_I %}
+							<strong>Year I</strong><br>
+							{% for stud in literary_sec_I %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 1 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="2">
+						{% if literary_sec_II %}
+							<strong>Year II</strong><br>
+							{% for stud in literary_sec_II %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 2 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="3">
+						{% if literary_sec_III %}
+							<strong>Year III</strong><br>
+							{% for stud in literary_sec_III %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}
+				</div><!-- 3 -->
+				<div class="year col-sm-2 col-sm-offset-1" id="4">
+						{% if literary_sec_IV %}
+							<strong>Year IV</strong><br>
+							{% for stud in literary_sec_IV %}
+								<strong><span id="name">{{stud.student.firstname}} {{stud.student.lastname}}</span></strong><br>
+							{% endfor %}
+						{% endif %}	
+				</div><!-- 4 -->		
+			<br><br><br><br><br><br>
+			</div><!-- literary -->
+			<br>			
+		</div><!-- content container page -->
+	</div><!-- clist -->
+
+</div><!-- container fluid -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

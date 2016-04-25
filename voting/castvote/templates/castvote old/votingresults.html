@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<!-- Links -->
+
+<a href="/">Home</a><br>
+
+{% if request.user.is_authenticated %}
+<a href="/accounts/logout/">Logout</a>
+{% else %}
+<a href="/accounts/login/">Login</a>
+{% endif %}<br>
+
+<a href="/candidatesbulletin/">Candidates Bulleting</a><br>
+
+<a href="/commonblog/">Common Blog</a><br>
+	
+<a href="/voting/">Cast Your Vote</a><br>
+
+<a href="/voting/results/"></a><br>
+
+<a href="/candidatelist">Candidate List</a><br>
+
+<!-- Links End -->
+
+<h3><strong>General Secretary</strong></h3><br><br>
+
+{% if general_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in general_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if general_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in general_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if general_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in general_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if general_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in general_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+
+
+<!-- Technical Secretaries -->
+<h3><strong>Technical Secretary</strong></h3><br><br>
+
+{% if technical_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in technical_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if technical_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in technical_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if technical_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in technical_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if technical_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in technical_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+
+<!-- Cultural Secretaries -->
+
+<h3><strong>Cultural Secretary</strong></h3><br><br>
+
+{% if cultural_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in cultural_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if cultural_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in cultural_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if cultural_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in cultural_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if cultural_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in cultural_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+
+<!-- Sports Secretaries -->
+<h3><strong>Sports Secretary</strong></h3><br><br>
+
+{% if sports_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in sports_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if sports_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in sports_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if sports_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in sports_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if sports_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in sports_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+
+
+<!-- Environmental Secretaries -->
+<h3><strong>Environmental Secretary</strong></h3><br><br>
+
+{% if environmental_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in environmental_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if environmental_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in environmental_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if environmental_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in environmental_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if environmental_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in environmental_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+<!-- Mess Secretaries -->
+<h3><strong>Mess Secretary</strong></h3><br><br>
+
+{% if mess_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in mess_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if mess_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in mess_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if mess_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in mess_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if mess_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in mess_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+
+<!-- Maintenance Secretaries -->
+<h3><strong>Maintenance Secretary</strong></h3><br><br>
+
+{% if maintenance_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in maintenance_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if maintenance_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in maintenance_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if maintenance_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in maintenance_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if maintenance_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in maintenance_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+<!-- Literary Secretaries -->
+<h3><strong>Literary Secretary</strong></h3><br><br>
+
+{% if literary_sec_I %}
+<strong>Year I</strong><br><br>
+{% for sec in literary_sec_I %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}<br><br>
+{% endif %}
+
+
+{% if literary_sec_II %}
+<strong>Year II</strong><br>
+{% for sec in literary_sec_II %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if literary_sec_III %}
+<strong>Year III</strong><br>
+{% for sec in literary_sec_III %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+{% if literary_sec_IV %}
+<strong>Year IV</strong><br>
+{% for sec in literary_sec_IV %}
+{{ sec.candidate.student.firstname }} {{ sec.candidate.student.lastname }} &emsp; {{ sec.votes }}<br>
+{% endfor %}
+{% endif %}
+
+
+
+
+</body>
+</html>

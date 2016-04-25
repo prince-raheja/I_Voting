@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Common Blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <style>
+  
+  body { 
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777
+       }
+	    h2 {
+    text-align: center;
+}
+	   
+	   .container {  
+      padding: 100px 20px;
+  }
+   .nav-tabs li a {
+      color: #777;
+  }
+  
+ 
+    
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+      background-color:black;
+    color: #d5d5d5 ;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+     }
+	 
+	 
+	 
+  .navbar-nav li a:hover {
+      color: #fff !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  
+  .form-control {
+      border-radius: 0;
+  }
+  textarea {
+      resize: none;
+	  }
+	  
+	
+			
+			a:link, a:visited {
+    background-color:#ccff33;
+    color: black;
+    border: 2px solid white
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: black;
+    color: #ccff33; }
+	
+	
+	#message {align-content:center; 
+						position:absolute; 
+						top:475px;
+						left:350px;
+						padding: 0px 70px}
+						
+						.page input{align-content:center;}
+		.profile {background-color:#A2F891;
+						border:1px solid black;
+						border-radius:10px;
+						padding:2px;}
+		.post {background-color:#FFFFAA;
+					border:1px solid black;
+					border-radius:10px;
+					padding:2px;}
+		#rightalign{align-content:right;}
+		#name{color:#5129FF}
+		#time{color:#D0D0D0}
+		
+		
+	
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" >
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     
+     <h4><kbd><strong><span class="glyphicon glyphicon-king"> INDIAN INSTITUTE OF TECHNOLOGY , PATNA</span></strong></kbd></h4>
+	 
+    </div>
+	
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+	  <li>{% if request.user.is_authenticated %}
+				<a class="navbar-brand" href="/accounts/logout/"><strong> <span class="glyphicon glyphicon-log-out">Logout</span></strong></a></li>
+				{% else %}
+			<li><a class="navbar-brand" href = "/accounts/login"><strong> <span class="glyphicon glyphicon-log-in">Login</span></strong></a></li>
+				{% endif %}
+				<li><a class="navbar-brand" href = "/candidatesbulletin"><strong> <span class="glyphicon glyphicon-th-list">Candidates Bulletin</strong></a></li>
+        
+       </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<div id="left">
+		<div class="content container col-sm-3">
+			<div class="profile">
+			{% if student %}
+			<strong>My Profile</strong><br>
+			{{ student.firstname }} {{ student.lastname }}<br>
+			Dept : {{ student.department }} <br>
+			Profile Last Updated<br>
+			{{ student.updated }}<br>
+
+			{% if not student.iscandidate %}
+			<a href="/accounts/applyforcandidate"><strong>Apply for Candidate</strong></a><br>
+			{% endif %}
+			<br><br>
+			{% endif %}
+			</div><!-- profile -->
+		</div><!-- content container -->
+	</div><!-- left -->
+
+
+
+
+	<!-- {% if deleted %}<h4>{{ deleted }}</h4><br>{% endif %} 	
+	{% if error_authentication %}<h4>{{ error_authentication }}</h4><br> {% endif %} 
+	{% if error_post %}<h4>{{ error_post }}</h4><br> {% endif %} -->
+	<div id="posts">
+		<div class="content container col-sm-9"  style="height:300px; width:650px; overflow:auto;">
+			{% for post in posts %}
+			<div class="post">
+				<strong><span id="name">{{ post.student.firstname }} {{ post.student.lastname }}</span></strong> 
+				<span id="rightalign">{% if request.user.is_authenticated and post.student.username == student.username %}
+				<a href= "/commonblog/{{post.id}}/delete">X</a>
+				{% endif %} 
+				</span>
+				<br>
+				{{ post.content }} 
+				<br><span id="time">{{ post.timestamp }}</span><br>
+			</div><!-- post -->
+			<br>
+			{% endfor %}
+		</div><!-- content container -->
+	</div><!-- posts -->
+
+
+
+	<div  id="message">
+		<div class="content container col-sm-9">
+			{% if request.user.is_authenticated %}
+			<form action = "/commonblog/addblog" method="POST"> {% csrf_token %}
+			<table>
+				<tr>
+					<td><textarea type="text" name="content" placeholder ="Write your view" rows="2" cols="72"></textarea></td>
+				</tr>
+			</table>
+			<input type = "submit" class="btn btn-danger btn-lg" name = "submit" value = "SUBMIT">
+			{% endif %}
+		</div><!-- content container -->
+	</div><!-- message -->
+	</div>
+	
+	 
+	
+
+	</body>
+	</html>

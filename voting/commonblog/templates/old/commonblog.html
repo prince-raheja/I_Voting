@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+	<title>Common Blog</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+		body {background-color:#FFFFFF;}
+		nav{background-color:#C3E1FF;}
+		#message{align-content:center; 	
+						position:fixed;
+						top:475px;
+						left:350px;}  
+		.page input{align-content:center;}
+		.profile{background-color:#A2F891;
+						border:1px solid black;
+						border-radius:10px;
+						padding:2px;}
+		.post {background-color:#FFFFAA;
+					border:1px solid black;
+					border-radius:10px;
+					padding:2px;}
+		#rightalign{align-content:right;}
+		#name{color:#5129FF}
+		#time{color:#D0D0D0}
+	</style>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+<div class="container-fluid">
+	<header>
+		<nav class="navbar navbar-dafault" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<h2>Indian Institute of Technology - Patna</h2>
+				</div><!-- navbar-header -->
+			<ul class="nav navbar-nav navbar-right">
+				<li>{% if request.user.is_authenticated %}
+				<a href="/accounts/logout/"><strong>Logout</strong></a>
+				{% else %}
+				<a href = "/accounts/login"><strong>Login</strong></a></li>
+				{% endif %}
+				<li><a href = "/candidatesbulletin"><strong>Candidates Bulletin</strong></a></li>
+				<li><a href="/voting/">Cast Your Vote</a></li>
+				<li><a href="/voting/results/">See Voting Results</a></li>
+				<li><a href="/candidatelist">Candidate List</li>
+			</ul>
+			</div><!-- container -->
+		</nav>
+	</header>
+
+	<div class="page" id="left">
+		<div class="content container col-sm-3">
+			<div class="profile">
+			{% if student %}
+			<strong>My Profile</strong><br>
+			{{ student.firstname }} {{ student.lastname }}<br>
+			Dept : {{ student.department }} <br>
+			Profile Last Updated<br>
+			{{ student.updated }}<br>
+
+			{% if not student.iscandidate %}
+			<a href="/accounts/applyforcandidate"><strong>Apply for Candidate</strong></a><br>
+			{% endif %}
+			<br><br>
+			{% endif %}
+
+			</div><!-- profile -->
+		</div><!-- content container -->
+	</div><!-- left -->
+
+
+
+
+	<!-- {% if deleted %}<h4>{{ deleted }}</h4><br>{% endif %} 	
+	{% if error_authentication %}<h4>{{ error_authentication }}</h4><br> {% endif %} 
+	{% if error_post %}<h4>{{ error_post }}</h4><br> {% endif %} -->
+	<div class="page" id="posts">
+		<div class="content container col-sm-9"  style="height:300px; width:650px; overflow:auto;">
+			{% for post in posts %}
+			<div class="post">
+				<strong><span id="name">{{ post.student.firstname }} {{ post.student.lastname }}</span></strong> 
+				{% if request.user.is_authenticated and post.student.username == student.username %}
+				<a href= "/commonblog/{{post.id}}/delete">Delete</a>
+				{% endif %} 
+				
+				<br>
+				{{ post.content }} 
+				<br><span id="time">{{ post.timestamp }}</span><br>
+			</div><!-- post -->
+			<br>
+			{% endfor %}
+		</div><!-- content container -->
+	</div><!-- posts -->
+
+
+
+	<div class="page" id="message">
+		<div class="content container">
+			{% if request.user.is_authenticated %}
+			<form action = "/commonblog/addblog" method="POST"> {% csrf_token %}
+			<table>
+				<tr>
+					<td><textarea type="text" name="content" placeholder ="Write your view" rows="2" cols="72"></textarea></td>
+				</tr>
+			</table>
+			<input type = "submit" name = "submit" value = "SUBMIT">
+			{% endif %}
+		</div><!-- content container -->
+	</div><!-- message -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

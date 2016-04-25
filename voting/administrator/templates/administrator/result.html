@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+		body{background-color: #A2F891;
+			font-size: 2em;}
+		ul{list-style-type:none;}
+		/*background-image: linear-gradient(to bottom, #FF7575, #E975FF);*/
+		nav{background-color:#000000;
+			color: #FFFFFF;}
+	</style>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+	<header>
+		<nav class="navbar navbar-dafault" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<h2>Indian Institute of Technology - Patna</h2>
+				</div><!-- navbar-header -->
+			</div><!-- container -->
+		</nav>
+	</header>
+
+	<div class="page" id="navlinks">
+		<div class="content container">
+				<ul class="nav navbar-nav navbar-right links" >
+					<li><a href="/administrator/">Home</a></li>
+					<li><a href="/accounts/logout/">Log Out</a></li>
+					<!-- <li><a href="/commonblog/">Common Blog</a></li>
+					<li><a href="/candidatesbulletin/">Candidates Bulletin</a></li>
+					<li><a href="/voting/">Cast Your Vote</a></li>
+					<li><a href="/voting/results/">See Voting Results</a></li> -->
+				</ul>
+		</div><!-- content container -->
+	</div><!-- navlinks -->
+
+<br>
+
+<div class="container-fluid">
+	<div class="page" id="clist">
+		<div class="container" align="center">
+			<ul>
+				<li>Unique Key entered :&nbsp;{{ uniquekey }}<br></li>
+				<br>
+				<li>{% if general %}
+				General :	{{ general.student.firstname }} {{ general.student.lastname }}
+				{% endif %}<br></li>
+				<br>
+				<li>{% if cultural %}
+				Cultural :	{{ cultural.student.firstname }} {{ cultural.student.lastname }}
+				{% endif %}<br></li>
+				<br>
+				<li>{% if technical %}
+				Technical : 	{{ technical.student.firstname }} {{ technical.student.lastname }}
+				{% endif %}<br></li>
+				<br>
+				<li>{% if sports %}
+				Sports : 	{{ sports.student.firstname }} {{ sports.student.lastname }}
+				{% endif %}<br></li>
+				<br>
+				<li>{% if environmental %}
+				Environmental : 	{{ environmental.student.firstname }} {{ environmental.student.lastname }}
+				{% endif %}<br></li>
+				<br>
+				<li>{% if mess %}
+				Mess : 	{{ mess.student.firstname }} {{ mess.student.lastname }}
+				{% endif %}<br></li>
+				<br>
+				<li>{% if literary %}
+				Literary : 	{{ literary.student.firstname }} {{ literary.student.lastname }}
+				{% endif %}<br></li>
+				<br>
+				<li>{% if maintenance %}
+				Maintenance : 	{{ maintenance.student.firstname }} {{ maintenance.student.lastname }}
+				{% endif %}<br></li>
+			</ul>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

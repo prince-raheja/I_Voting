@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Log-in Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <style>
+  
+  body {  background-image: url("IITPatna_logo.jpg") ;
+         background-repeat:no-repeat;
+		 background-position:50% 220%;
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777
+       }
+	   
+	 
+  h2 {
+    text-align: center;
+}
+  .container {  
+      padding: 80px 120px;
+  }
+   .nav-tabs li a {
+      color: #777;
+  }
+  
+ 
+    
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+      color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #fff !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  
+  .form-control {
+      border-radius: 0;
+  }
+  textarea {
+      resize: none;
+	  }
+	  
+	  #nav1 {color:#FFFFFF;
+			background-color:#000000;
+			border-top: 1px solid black;
+		    font-size:15px;
+			width:100%; 		
+			padding-top:10px;	 
+			padding-bottom:21px;	 
+			position:absolute;
+			top:585px;
+			left:0px;}
+		#nav1 > a {color:#FFFFFF;}
+  
+  #col {background-color:#CFCBEF;
+			border-radius: 7px;}
+			
+			a:link, a:visited {
+    background-color:black;
+    color: black;
+    border: 2px solid white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: #999966;
+    color: white; }
+	
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" >
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+       <!-- <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button> -->
+     <a class="navbar-brand" ><span class="glyphicon glyphicon-king"> INDIAN INSTITUTE OF TECHNOLOGY , PATNA</span></a>
+	 {% if error_login %}
+{{ error_login }}
+{% endif %}
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="navbar-brand"> <span class="glyphicon glyphicon-log-in"> LOG-IN PAGE </span></a></li>
+       </ul>
+    </div>
+  </div>
+</nav>
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div class="container">
+  <br>
+  <h2 id="col">I-VOTING  LOGIN</h2>
+  <br>
+  <form class="form-horizontal" role="form" method="POST" action = "/accounts/auth/">{% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Username:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" name="username" placeholder="Enter Username">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pswd">Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" name="password" id="pswd" placeholder="Enter password">
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default" >Login</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div id="nav1">
+	&emsp;
+  <a href="demo.html" target="blank">Home page</a> 
+  <a href="commonblog.html"target="blank" >Common Blog</a> 
+  <a href="/accounts/register"target="blank" >Sign Up</a> 
+  
+</div>
+
+
+  
+</body>
+</html>

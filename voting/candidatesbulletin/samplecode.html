@@ -1,0 +1,31 @@
+{% for post in posts %}
+	<strong>{{ post.candidate.student.username }}</strong><br>
+	{{ post.content }}<br>
+	{{ post.timestamp }}<br>
+	{% with a=forloop.counter0 %}
+	a = {{ a }}
+	{{ comments.a }}
+		{% for comment in comments %}
+			{% for comment1 in comment %}
+				<strong>{{ comment.student.username }}</strong><br>
+				{{ comment.content }}<br>
+				{{ comment.timestamp }}
+			{% endfor %}<br><br>
+		{% endfor %}<br><br>
+	{% endwith %}
+{% empty %}
+	No Posts to show
+{% endfor %}
+
+
+
+comments|getcomments:forloop.counter0
+
+
+{% for var in {{ comments|getcomments:forloop.counter0 }}  %}<br><br>
+		{{ var.content }}<br><br>
+	{% endfor %}
+
+
+
+{% load get_comments %}

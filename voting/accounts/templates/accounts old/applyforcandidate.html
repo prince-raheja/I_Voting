@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<title>Application</title>
+	<style type="text/css">
+		body {background-color:#C3E1FF}
+		#top_bar {font-family: "Times New Roman", Times, serif;
+			background-color:#1500FF;
+			color:#FFFFFF;
+		    font-size:30px;
+			font-weight:bold;
+		    padding:20px;
+			border-bottom:3px solid black;
+			width:100%;
+			position:fixed;
+			top:0px;
+			left:0px}
+		table{position:absolute;
+			  left:20px;}
+		#submit{position:absolute;
+			  top:510px;
+			  left:28px;}
+		nav {color:#FFFFFF;
+			background-color:#000000;
+			border-top: 1px solid black;
+		    font-size:20px;
+			width:100%; 		
+			padding-top:10px;	 
+			padding-bottom:21px;	 
+			margin-left:0px;
+			position:absolute;
+			top:585px;
+			left:0px;}
+		nav > a {color:#FFFFFF;}
+	</style>	
+
+</head>
+
+
+<body>
+<div id="top_bar" align="center">Indian Institute of Technology - Patna</div>
+<br/><br/><br/><br/>
+<h2>Application for Candidature</h2>
+
+<form action="/accounts/candidateresult/" method="post">{% csrf_token %}	
+
+{% if request.user.is_authenticated %}
+Name - {{student.firstname}} {{student.lastname}}<br/>
+Username - {{student.username}}<br/>
+Roll No - {{student.rollno}}<br/>
+{% endif %}
+
+<table cellspacing="10">
+	<tr>
+		<td>Momento:</td>
+		<td>
+		<textarea type="text" name="momento" rows="5" cols="50">
+		</textarea>
+		</td>
+		<td>
+			{% if error_momento %}
+			{{ error_momento }}
+			{% endif %}
+		</td>
+	</tr>
+
+	<tr>
+		<td>Post:</td>
+		<td>
+	<select name="post">
+			<option value=""></option>		
+			<option value="general">General Secretary</option>
+			<option value="cultural">Cultural Secretary</option>
+			<option value="technical">Technical Secretary</option>	
+			<option value="sports">Sports Secretary</option>	
+			<option value="environmental">Environmental Secretary</option>
+			<option value="literary">Literary Secretary</option>		
+			<option value="mess">Mess Secretary</option>		
+			<option value="maintenance">Maintenance Secretary</option>	
+	</select>
+		</td>
+		<td>
+			{% if error_post %}
+			{{ error_post }}
+			{% endif %}
+		</td>
+	</tr>
+</table>
+
+<input id="submit" type="submit" value="Submit"></tr>
+</form>
+
+<nav align="left">
+	&emsp;
+  <a href="blog_common.html">Common Blog</a> |   
+  <a href="blog_candidate.html">Candidates' Blog</a>  	
+</nav>
+
+
+</body>
+</html>

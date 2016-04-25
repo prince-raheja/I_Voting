@@ -1,0 +1,24 @@
+<html>
+<head></head>
+<body>
+{% if error_login %}
+{{ error_login }}
+{% endif %}
+
+{% if error_authorization %}
+{{ error_authorization }}
+{% endif %}
+
+{% if user.is_authenticated %}
+ <strong>{{student.firstname  }} {{ student.lastname }}</strong><br>
+{{ student.username }}<br>
+{% endif %}
+<a href ="/accounts/myprofile">My Profile</a>
+<a href="/accounts/changepassword">Change Password </a>
+
+
+
+
+
+</body>
+</html>

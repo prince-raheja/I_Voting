@@ -1,0 +1,239 @@
+
+<!doctype html>
+<html>
+<head>
+<title>Registration</title>
+	<style type="text/css">
+		body {background-color:#F5F5DC}
+		#top_bar {font-family: "Times New Roman", Times, serif;
+			background-color:#E5E4E2;
+			color:#000000;
+		    font-size:30px;
+			font-weight:bold;
+		    padding:20px;
+			border-bottom:3px solid black;
+			width:100%;
+			position:fixed;
+			top:0px;
+			left:0px}
+		table{position:absolute;
+			  left:20px;}
+		#line1 {position:absolute;
+			  left:20px;
+			  top:380px;}
+		#q {position:absolute;
+			  top:410px;
+			  left:15px;}
+		#a {position:absolute;
+			  top:440px;
+			  left:15px;}
+		#line2 {position:absolute;
+			  left:20px;
+			  top:460px;}
+		#submit{position:absolute;
+			  top:510px;
+			  left:28px;}
+		nav {color:#FFFFFF;
+			background-color:#000000;
+			border-top: 1px solid black;
+		    font-size:20px;
+			width:100%; 		
+			padding-top:10px;	 
+			padding-bottom:21px;	 
+			margin-left:0px;
+			position:absolute;
+			top:625px;
+			left:0px;}
+		nav > a {color:#FFFFFF;}
+	</style>	
+</head>
+
+
+
+<body>
+
+<div id="top_bar" align="center">Indian Institute of Technology - Patna<br>
+ <!-- Add error for email_exists<br>
+ Add error for rollno_exists -->
+</div>
+<br/><br/><br/><br/>
+<h2>Registration </h2>
+
+<form action="/accounts/register_result/" method="post">{% csrf_token %}		
+<table cellspacing="10">
+	<tr>
+		<td>First Name:</td>
+		<td>
+		<input type="text" name="firstname" size="7" value=""/>
+	    </td>
+	</tr>
+	
+	<tr>
+		<td>Last Name:</td>
+		<td>
+		<input type="text" name="lastname" size="7" value=""/>
+		</td>
+		<td>
+			{% if error_name %}
+			<!-- <p color="red"> -->
+			{{ error_name }}
+			<!-- </p> -->
+			{% endif %}
+		</td>
+	</tr>
+	
+
+	</tr>	
+		<td>email-Id:</td>
+		<td>
+		<input type="text" name="email" size="14"/> 			@iitp.ac.in
+		</td>
+		<td>
+			{% if error_email %}
+			<!-- <p color="red"> -->
+			{{  error_email }}
+			{% elif email_exists %}
+			{{ email_exists }}
+			<!-- </p> -->
+			{% endif %}
+		</td>
+	</tr>
+	
+
+	<tr>
+		<td>Roll Number:</td>
+		<td>
+		<input type="text" name="rollno" size="8"/>
+		</td>
+		<td>
+			{% if error_rollno %}
+			<!-- <p color="red"> -->
+			{{  error_rollno }}
+			<!-- </p> -->
+			{% endif %}
+		</td>
+	</tr>
+	
+
+	<tr>
+		<td>gender:</td>
+		<td>
+		Male <input type="radio" name="gender" value="male">
+		Female <input type="radio" name="gender" value="female">
+		</td>
+		<td>
+			{% if error_gender %}
+		    <!-- <p color="red"> -->
+	        {{  error_gender}}
+		    <!-- </p> -->
+		    {% endif %}
+		</td>
+	</tr>
+	
+
+	</tr>
+		<td>program:</td>
+		<td>
+		B.Tech <input type="radio" name="program" value="B.Tech">
+		M.Tech <input type="radio" name="program" value="M.Tech">
+		PhD <input type="radio" name="program" value="PhD">
+		</td>
+		<td>
+			{% if error_program %}
+		    <!-- <p color="red"> -->
+	        {{  error_program}}
+		    <!-- </p> -->
+		    {% endif %}
+			</td>
+	</tr>
+	
+
+	</tr>
+		<td>department:</td>
+		<td>
+		<select name="department">
+			<option value="blank"></option>		
+			<option value="cse">CSE</option>
+			<option value="ee">EE</option>
+			<option value="me">ME</option>	
+			<option value="ce">CE</option>	
+			<option value="ch">CH</option>	
+		</select>
+		</td>
+		<td>
+			{% if error_department %}
+		    <!-- <p color="red"> -->
+	        {{  error_department}}
+		    <!-- </p> -->
+		    {% endif %}
+		</td>
+	</tr>
+	
+	
+
+	</tr>
+		<td>year:</td>
+		<td>
+		<select name="year">
+			<option value="blank"></option>		
+			<option value="i">I</option>
+			<option value="ii">II</option>
+			<option value="iii">III</option>
+			<option value="iv">IV</option>	
+		</select>
+		</td>
+		<td>
+			{% if error_year %}
+		    <!-- <p color="red"> -->
+	        {{  error_year}}
+		    <!-- </p> -->
+		    {% endif %}
+		</td>
+	</tr>
+	
+	
+	<tr>
+	     <td>password:</td>
+		 <td>
+		 <input type="password" name="password" size="7" value=""/>
+		 </td>
+		 <td>
+		 	{% if error_password %}
+		    <!-- <p color="red"> -->
+	        {{  error_password}}
+		    <!-- </p> -->
+		    {% endif %}
+		 </td>
+	</tr>
+	
+	<tr>
+	     <td>Confirm Password:</td>
+		 <td>
+		 <input type="password" name="confirmpassword" size="7" value=""/>
+		 </td>
+		 <td>
+		 	{% if error_confirmpassword %}
+		    <!-- <p color="red"> -->
+	        {{  error_confirmpassword}}
+		    <!-- </p> -->
+		    {% endif %}
+		 </td>
+	</tr>
+	
+</table>
+
+
+
+<input id="submit" type="submit" value="Submit"></tr>
+</form>
+
+<nav align="left">
+	&emsp;
+  <a href="index.html">Home</a> |
+  <a href="/commonblog/">Common Blog</a> |   
+  <a href="blog_candidate.html">Candidates' Blog</a>  
+	
+</nav>
+
+</body>
+</html>

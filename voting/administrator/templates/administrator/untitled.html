@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+		body{background-color: #A2F891;}
+		form{font-size: 2em;}
+		/*background-image: linear-gradient(to bottom, #FF7575, #E975FF);*/
+		nav{background-color:#000000;
+			color: #FFFFFF;}
+	</style>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+	<header>
+		<nav class="navbar navbar-dafault" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<h2>Indian Institute of Technology - Patna</h2>
+				</div><!-- navbar-header -->
+			</div><!-- container -->
+		</nav>
+	</header>
+
+	<div class="page" id="navlinks">
+		<div class="content container">
+				<ul class="nav navbar-nav navbar-right links" >
+					<li><a href="/administrator/">Home</a></li>
+					<li><a href="/accounts/logout/">Log Out</a></li>
+					<!-- <li><a href="/commonblog/">Common Blog</a></li>
+					<li><a href="/candidatesbulletin/">Candidates Bulletin</a></li>
+					<li><a href="/voting/">Cast Your Vote</a></li>
+					<li><a href="/voting/results/">See Voting Results</a></li> -->
+				</ul>
+		</div><!-- content container -->
+	</div><!-- navlinks -->
+
+<br><br><br><br>
+
+<div class="container-fluid">
+	<div class="page" id="clist">
+		<div class="container" align="center">
+			<form name="uniquekeybox" action='/administrator/result/' id="uk" method = "POST"> {% csrf_token%}
+			{% if error_uniquekey %}
+				{{ error_uniquekey }}
+			{% endif %}
+			<input type="text" name="uniquekey" placeholder="Enter Unique Key" cols="75">
+			<br><br>
+			{% if error_year %}
+				{{ error_year }}
+			{% endif %}
+			<table>	
+				</tr>
+				<td>Year :&nbsp;</td>
+				<td>
+				<select name="year">
+					<option value="blank"></option>		
+					<option value="I">I</option>
+					<option value="II">II</option>
+					<option value="III">III</option>
+					<option value="IV">IV</option>	
+				</select>
+				</td>
+				</tr>
+			</table>
+			<br>
+			<button type="submit">Submit</button>
+			</form>
+		</div>
+	</div><!-- clist -->
+</div><!-- container fluid -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>
